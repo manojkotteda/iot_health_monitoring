@@ -111,7 +111,6 @@ public class CommonService {
             initialDbData();
             return;
         }
-
         WearableSensorReading oldReading = sensorReadingRepo.getLateatReadingOfDev1().get(0);
         WearableSensorReading newReading = new WearableSensorReading();
         newReading.setDeviceId(oldReading.getDeviceId());
