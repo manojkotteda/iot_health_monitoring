@@ -1,0 +1,76 @@
+<div>
+    <app-widget-area [data]="bigChart"></app-widget-area>
+</div>
+
+<br>
+
+<mat-divider></mat-divider>
+
+<br>
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
+    <mat-card fxFlex="25">
+        <app-widget-card label="MAX of last 10 mins (in Whr)" [total]="maxConsumprion" percentage="50" [data]="cards">
+        </app-widget-card>
+    </mat-card>
+    <mat-card fxFlex="25"  [ngClass]="{'warn' : avgConsumption > 3.00}">
+        <app-widget-card label="AVG of last 10 mins (in Whr)" [total]="avgConsumption" percentage="30" [data]="cards">
+        </app-widget-card>
+    </mat-card>
+    <mat-card fxFlex="25">
+        <app-widget-card label="MIN of last 10 mins(in Whr)" [total]="minConsumption" percentage="40" [data]="cards">
+        </app-widget-card>
+    </mat-card>
+    <!-- <mat-card fxFlex="25">
+        <app-widget-card label="Last 10 mins (in Whr)" total="6WHr" percentage="20" [data]="cards"></app-widget-card>
+    </mat-card> -->
+</div>
+
+<br>
+
+<mat-divider></mat-divider>
+
+<br>
+
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+    <div fxFlex="80">
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="deviceId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> deviceId </th>
+                    <td mat-cell *matCellDef="let element"> {{element.deviceId}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="spo2">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> spo2 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.spo2}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="deviceBattery">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> deviceBattery </th>
+                    <td mat-cell *matCellDef="let element"> {{element.deviceBattery}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="timeStamp">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> timeStamp </th>
+                    <td mat-cell *matCellDef="let element"> {{element.timeStamp| date:'medium'}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+        </div>
+
+    </div>
+</div>
+
+<br>
+<br>
+<br>
